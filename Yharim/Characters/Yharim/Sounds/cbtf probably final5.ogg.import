@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cbtf probably final5.ogg-d971042b6562cb3e2399149ae7d60c3b.oggstr"
+
+[deps]
+
+source_file="res://Yharim/Characters/Yharim/Sounds/cbtf probably final5.ogg"
+dest_files=[ "res://.import/cbtf probably final5.ogg-d971042b6562cb3e2399149ae7d60c3b.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

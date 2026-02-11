@@ -1,0 +1,700 @@
+[gd_scene load_steps=52 format=2]
+
+[ext_resource path="res://Yharim/Characters/Yharim/UI/LogoYharimShow.png" type="Texture" id=1]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/YharimCodexUIBG.png" type="Texture" id=2]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/YharimCodexUI.gd" type="Script" id=3]
+[ext_resource path="res://ui/default_font.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/ButtonTextures9.png" type="Texture" id=5]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/ButtonTextures7.png" type="Texture" id=6]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/ButtonTextures8.png" type="Texture" id=7]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/MusicButtonTextures2.png" type="Texture" id=8]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/Credit3.png" type="Texture" id=9]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/Credit2.png" type="Texture" id=10]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/ButtonTextures2.png" type="Texture" id=11]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/Credit1.png" type="Texture" id=12]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/ButtonTextures1.png" type="Texture" id=13]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/MusicButtonTextures1.png" type="Texture" id=14]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/ButtonTextures3.png" type="Texture" id=15]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/MusicButtonTextures3.png" type="Texture" id=16]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/YharimCodexUIPage.png" type="Texture" id=17]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/InfoBttn.gd" type="Script" id=18]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/InfoExitBttn.gd" type="Script" id=19]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/YharimCodexUIPageShort.png" type="Texture" id=20]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/CreditsButton.gd" type="Script" id=21]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/CreditsExitBttn.gd" type="Script" id=22]
+[ext_resource path="res://Yharim/Characters/Yharim/Sounds/Menu_Open.wav" type="AudioStream" id=23]
+[ext_resource path="res://Yharim/Characters/Yharim/Sounds/Menu_Tick.wav" type="AudioStream" id=24]
+[ext_resource path="res://Yharim/Characters/Yharim/Sounds/Menu_Close.wav" type="AudioStream" id=25]
+[ext_resource path="res://Yharim/Characters/Yharim/Sounds/YomiYharimOST.ogg" type="AudioStream" id=26]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/MusicPlayTextures1.png" type="Texture" id=27]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/MusicPlayTextures2.png" type="Texture" id=28]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/MusicExit.gd" type="Script" id=29]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/Music.gd" type="Script" id=30]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/ButtonTextrues/MusicPlayHoverTextures2.png" type="Texture" id=31]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/OST1.gd" type="Script" id=32]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/OST2.gd" type="Script" id=33]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/OST3.gd" type="Script" id=34]
+[ext_resource path="res://Yharim/Characters/Yharim/Sounds/cbtf probably final5.ogg" type="AudioStream" id=35]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/Screenshot 2025-01-30 171421.png" type="Texture" id=36]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/Screenshot 2025-01-30 171305.png" type="Texture" id=37]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/Screenshot 2025-01-30 171401.png" type="Texture" id=38]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/Achivments.gd" type="Script" id=39]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/AchButton.gd" type="Script" id=40]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/YharimCodexUIPageLong.png" type="Texture" id=41]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/Codex/ShinyCircle2.png" type="Texture" id=42]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform float wave_speed = 1.0;
+uniform float wave_amplitude = 0.1;
+uniform float wave_frequency = 1.0;
+
+void fragment() {
+	vec2 uv = UV;
+	
+	// Calculate the wave offset
+	float wave_offset = sin(uv.x * wave_frequency + TIME * wave_speed) * wave_amplitude;
+
+	// Apply the wave offset to the UV coordinates
+	uv.y += wave_offset;
+
+	// Sample the texture using the modified UV coordinates
+	COLOR = texture(TEXTURE, uv);
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 5 )
+shader_param/wave_speed = 1.0
+shader_param/wave_amplitude = 0.005
+shader_param/wave_frequency = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=7]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0.815642, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.917647 )
+
+[sub_resource type="CanvasItemMaterial" id=8]
+
+[sub_resource type="Curve" id=1]
+min_value = -80.0
+max_value = 80.0
+_data = [ Vector2( 0, 1.63635 ), 0.0, 0.0, 0, 0, Vector2( 0.118812, 6.18182 ), 0.0, 0.0, 0, 0, Vector2( 0.267327, 0.363632 ), 0.0, 0.0, 0, 0, Vector2( 0.371287, -6.90909 ), 0.0, 0.0, 0, 0, Vector2( 0.485149, 0.363632 ), 0.0, 0.0, 0, 0, Vector2( 0.623762, 6.18182 ), 0.0, 0.0, 0, 0, Vector2( 0.747525, 0.363632 ), 0.0, 0.0, 0, 0, Vector2( 0.866337, -6.90909 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=2]
+min_value = 1.0
+max_value = 1.5
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.148515, 1.00114 ), -0.36244, -0.36244, 0, 0, Vector2( 0.247525, 1.02386 ), 0.0, 0.0, 0, 0, Vector2( 0.381188, 1.01932 ), 0.0, 0.0, 0, 0, Vector2( 0.509901, 1.04659 ), 0.0, 0.0, 0, 0, Vector2( 0.683168, 1.02841 ), 0.0, 0.0, 0, 0, Vector2( 0.821782, 1.05568 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.290503, 0.994413, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 1, 1, 1, 0.54902, 1, 1, 1, 0.529412 )
+
+[node name="YharimInfo" type="Control"]
+anchor_right = 0.419
+anchor_bottom = 1.0
+margin_right = 0.839966
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 6 )
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sun" type="CPUParticles2D" parent="."]
+material = SubResource( 7 )
+position = Vector2( 240, 33 )
+amount = 3
+lifetime = 1.5
+texture = ExtResource( 42 )
+direction = Vector2( 0, 0 )
+gravity = Vector2( 0, 0 )
+angular_velocity = 59.45
+angular_velocity_random = 1.0
+linear_accel = 44.04
+linear_accel_random = 1.0
+scale_amount = 0.5
+color = Color( 1, 1, 0.964706, 1 )
+color_ramp = SubResource( 10 )
+hue_variation = 0.05
+hue_variation_random = 1.0
+
+[node name="Logo" type="CPUParticles2D" parent="."]
+material = SubResource( 8 )
+position = Vector2( 132, 40 )
+amount = 1
+lifetime = 8.0
+texture = ExtResource( 1 )
+gravity = Vector2( 0, 0 )
+angle_curve = SubResource( 1 )
+scale_amount = 0.18
+scale_amount_curve = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Floating Dust" type="CPUParticles2D" parent="."]
+material = SubResource( 7 )
+position = Vector2( 135, 223 )
+amount = 45
+lifetime = 1.5
+texture = ExtResource( 42 )
+emission_shape = 2
+emission_rect_extents = Vector2( 120, 1 )
+direction = Vector2( 0, 0 )
+spread = 180.0
+gravity = Vector2( 0, -98 )
+initial_velocity = 37.0
+initial_velocity_random = 1.0
+angular_velocity = 720.0
+angular_velocity_random = 1.0
+linear_accel = 44.04
+linear_accel_random = 1.0
+scale_amount = 0.1
+scale_amount_random = 0.32
+color = Color( 0.517647, 0.0470588, 0.0470588, 1 )
+color_ramp = SubResource( 4 )
+color_initial_ramp = SubResource( 9 )
+hue_variation = 0.05
+hue_variation_random = 1.0
+
+[node name="CreditAndVer" type="VBoxContainer" parent="."]
+margin_left = 1.0
+margin_top = 164.0
+margin_right = 72.0
+margin_bottom = 227.0
+
+[node name="VersionNumber2" type="Label" parent="CreditAndVer"]
+margin_right = 71.0
+margin_bottom = 25.0
+custom_colors/font_color = Color( 0.607843, 0.678431, 0.717647, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "thanks for 
+100k!"
+align = 1
+
+[node name="VersionNumber" type="Label" parent="CreditAndVer"]
+margin_top = 29.0
+margin_right = 71.0
+margin_bottom = 40.0
+custom_colors/font_color = Color( 0.607843, 0.678431, 0.717647, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "ver: 1.4.0"
+align = 1
+
+[node name="Credits" type="TextureButton" parent="CreditAndVer"]
+unique_name_in_owner = true
+margin_top = 44.0
+margin_right = 71.0
+margin_bottom = 63.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Credit" type="ScrollContainer" parent="CreditAndVer/Credits"]
+unique_name_in_owner = true
+visible = false
+anchor_right = 0.085
+margin_left = 39.0
+margin_top = -192.0
+margin_right = 244.965
+margin_bottom = 12.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Texture" type="TextureRect" parent="CreditAndVer/Credits/Credit"]
+unique_name_in_owner = true
+margin_right = 200.0
+margin_bottom = 441.0
+texture = ExtResource( 17 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CreditExit" type="Button" parent="CreditAndVer/Credits/Credit/Texture"]
+unique_name_in_owner = true
+margin_left = 180.0
+margin_top = 2.0
+margin_right = 198.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.490196, 0.490196, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "X"
+script = ExtResource( 22 )
+
+[node name="Label2" type="Label" parent="CreditAndVer/Credits/Credit/Texture"]
+anchor_right = 0.11
+anchor_bottom = 0.069
+margin_left = 25.0
+margin_top = 293.0
+margin_right = 153.0
+margin_bottom = 327.571
+custom_colors/font_color = Color( 0.607843, 0.678431, 0.717647, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "All of these awesome people helped bring Yharim to life for you to play!"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Label" type="Label" parent="CreditAndVer/Credits/Credit"]
+margin_right = 199.0
+margin_bottom = 263.0
+custom_colors/font_color = Color( 0.607843, 0.678431, 0.717647, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "  Main Developer: Catbox
+
+  Main Animator: Catbox
+
+  Support and Endorsement: Ozzatron
+
+  Music: theforge129
+
+  Coding Help: Trimay
+
+  Lead Balancer: Mana
+
+  Internship: Sugar_Father
+
+  Beta Testers: Ozzatron, Dia, Death,
+   Script, Mana, NightDev, Cherry, triple,
+   Nezriani, Hayabo-of-the-so, Videofreak,
+   Sugar_Father, Kanavaer, HellYeah!!!,
+   Trinity, Steph, Draedon"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Main" type="VBoxContainer" parent="."]
+margin_left = 58.0
+margin_top = 88.0
+margin_right = 208.0
+margin_bottom = 221.0
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Info" type="TextureButton" parent="Main"]
+unique_name_in_owner = true
+margin_right = 150.0
+margin_bottom = 37.0
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 11 )
+script = ExtResource( 18 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Main/Info"]
+unique_name_in_owner = true
+visible = false
+margin_left = -24.0
+margin_top = -87.0
+margin_right = 188.0
+margin_bottom = 129.0
+scroll_horizontal_enabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Info/ScrollContainer"]
+margin_right = 210.0
+margin_bottom = 757.0
+
+[node name="TextureRect" type="TextureRect" parent="Main/Info/ScrollContainer/HBoxContainer"]
+margin_right = 210.0
+margin_bottom = 757.0
+texture = ExtResource( 41 )
+
+[node name="InfoExit" type="Button" parent="Main/Info/ScrollContainer/HBoxContainer/TextureRect"]
+unique_name_in_owner = true
+margin_left = 190.0
+margin_top = 2.0
+margin_right = 208.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0.890196, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.576471, 0.576471, 1 )
+custom_fonts/font = ExtResource( 4 )
+shortcut_in_tooltip = false
+text = "x"
+script = ExtResource( 19 )
+
+[node name="RichTextLabel" type="Label" parent="Main/Info/ScrollContainer"]
+margin_right = 209.0
+margin_bottom = 697.0
+custom_colors/font_color = Color( 0.607843, 0.678431, 0.717647, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "  Archetype: Rushdown
+
+  Yharim excels in aggressive, high-speed
+  combat, overwhelming opponents
+  with savage pressure and rapid
+  movement. His playstyle focuses on
+  short but severely damaging combos,
+  meaties, breaking guards, and
+  persistent block pressure.
+
+  Core Mechanic: Auric Charge
+  Gain charges by hitting blocking foes,
+  guard breaks, or raising combo count
+  
+  Use charges on the following:
+  - Ultra fast Auric Dash
+  - Speeding up Oppression bolts
+  - Crater, Haymaker, Auric Knee,
+    and other strong supers
+    
+  Install 1: Tyrant's Might
+  REQUIRES: 3 Auric Charge + 4 Super
+  - Permanent duration, lasts forever
+  - Increases charge limit from 3 to 5
+  - Empowers all normals
+  - Auric Dash becomes free
+  - Makes Auric Orb stronger
+  - Unlocks God Slaying Punch and Beam
+  - Allows use of Overcharge
+  
+  Install 2: Overcharge
+  REQUIRES: 5 Auric Charge
+  - Temporary buff
+  - Attacks summon red lightning on hit
+  - Makes God Slaying Punch even stronger
+
+  Yharim's gameplay rewards an
+  aggressive mindset, precise
+  positioning, and resource management,
+  making him a dynamic and thrilling
+  character.
+  
+  His opponents can beat him by
+  applying their own zoning and pressure,
+  baiting out his riskier moves, and
+  exploiting his limited movement options.
+  Yharim struggles against foes that can
+  present threats from multiple angles.
+  When he is out of Auric Charge, he is
+  very vulnerable."
+
+[node name="Settings" type="TextureButton" parent="Main"]
+unique_name_in_owner = true
+margin_top = 41.0
+margin_right = 150.0
+margin_bottom = 78.0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 8 )
+script = ExtResource( 30 )
+
+[node name="MusicPage" type="ScrollContainer" parent="Main/Settings"]
+unique_name_in_owner = true
+visible = false
+margin_left = -22.0
+margin_top = -82.0
+margin_right = 178.0
+margin_bottom = 140.0
+scroll_horizontal_enabled = false
+
+[node name="MusicPage" type="TextureRect" parent="Main/Settings/MusicPage"]
+margin_right = 200.0
+margin_bottom = 222.0
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Settings/MusicPage/MusicPage"]
+margin_left = 23.0
+margin_top = 33.0
+margin_right = 173.0
+margin_bottom = 152.0
+
+[node name="OST1" type="TextureButton" parent="Main/Settings/MusicPage/MusicPage/VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 150.0
+margin_bottom = 37.0
+toggle_mode = true
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 27 )
+texture_hover = ExtResource( 31 )
+script = ExtResource( 32 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Name" type="Label" parent="Main/Settings/MusicPage/MusicPage/VBoxContainer/OST1"]
+margin_left = 39.0
+margin_top = 8.0
+margin_right = 148.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 4 )
+text = "Yomi Yharim OST"
+
+[node name="Artist" type="Label" parent="Main/Settings/MusicPage/MusicPage/VBoxContainer/OST1"]
+margin_left = 44.0
+margin_top = 19.0
+margin_right = 153.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 4 )
+text = "-theforge129"
+
+[node name="OST2" type="TextureButton" parent="Main/Settings/MusicPage/MusicPage/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+margin_top = 41.0
+margin_right = 150.0
+margin_bottom = 78.0
+disabled = true
+toggle_mode = true
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 27 )
+texture_hover = ExtResource( 31 )
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="Name" type="Label" parent="Main/Settings/MusicPage/MusicPage/VBoxContainer/OST2"]
+margin_left = 39.0
+margin_top = 8.0
+margin_right = 148.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 4 )
+text = "Ignite My Flame"
+
+[node name="Artist" type="Label" parent="Main/Settings/MusicPage/MusicPage/VBoxContainer/OST2"]
+margin_left = 44.0
+margin_top = 19.0
+margin_right = 153.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 4 )
+text = "-Dodged Music"
+
+[node name="OST3" type="TextureButton" parent="Main/Settings/MusicPage/MusicPage/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 41.0
+margin_right = 150.0
+margin_bottom = 78.0
+toggle_mode = true
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 27 )
+texture_hover = ExtResource( 31 )
+script = ExtResource( 34 )
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="Name" type="Label" parent="Main/Settings/MusicPage/MusicPage/VBoxContainer/OST3"]
+margin_left = 39.0
+margin_top = 8.0
+margin_right = 148.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 4 )
+text = "CbtC"
+
+[node name="Artist" type="Label" parent="Main/Settings/MusicPage/MusicPage/VBoxContainer/OST3"]
+margin_left = 44.0
+margin_top = 19.0
+margin_right = 153.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 4 )
+text = "-theforge129"
+
+[node name="Label" type="Label" parent="Main/Settings/MusicPage/MusicPage"]
+margin_left = 40.0
+margin_top = 17.0
+margin_right = 158.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 4 )
+text = "Used Music Player"
+align = 1
+
+[node name="Label2" type="Label" parent="Main/Settings/MusicPage/MusicPage"]
+margin_left = -25.0
+margin_top = 111.0
+margin_right = 222.0
+margin_bottom = 220.0
+custom_fonts/font = ExtResource( 4 )
+text = "You can play Yharim's themes here.
+Other players won't hear this music.
+You should turn off YOMI's own music.
+Music will persist into matches and
+can't be paused mid game, this is a
+Codex limitation.
+Don't use the Tyrant's Might music
+option or it will overlap!"
+align = 1
+
+[node name="MusicExit" type="Button" parent="Main/Settings/MusicPage/MusicPage"]
+unique_name_in_owner = true
+margin_left = 180.0
+margin_top = 2.0
+margin_right = 198.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.490196, 0.490196, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "X"
+script = ExtResource( 29 )
+
+[node name="Achivments" type="TextureButton" parent="Main"]
+unique_name_in_owner = true
+margin_top = 82.0
+margin_right = 150.0
+margin_bottom = 119.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 7 )
+script = ExtResource( 39 )
+
+[node name="AchInfo" type="ScrollContainer" parent="Main/Achivments"]
+unique_name_in_owner = true
+visible = false
+margin_left = -25.0
+margin_top = -86.0
+margin_right = 187.0
+margin_bottom = 141.0
+scroll_horizontal_enabled = false
+
+[node name="TextureRect" type="TextureRect" parent="Main/Achivments/AchInfo"]
+margin_right = 200.0
+margin_bottom = 441.0
+texture = ExtResource( 17 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="Main/Achivments/AchInfo/TextureRect"]
+margin_left = 12.0
+margin_top = 9.0
+margin_right = 192.0
+margin_bottom = 49.0
+custom_fonts/font = ExtResource( 4 )
+text = "Complete all non-secret achievements to unlock a cosmetic skin.
+This skin has unique visual effects.
+Images below:
+"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="TextureRect" type="TextureRect" parent="Main/Achivments/AchInfo/TextureRect"]
+margin_left = 15.0
+margin_top = 53.0
+margin_right = 190.0
+margin_bottom = 137.0
+texture = ExtResource( 37 )
+expand = true
+
+[node name="Label" type="Label" parent="Main/Achivments/AchInfo/TextureRect/TextureRect"]
+margin_left = 20.0
+margin_top = 86.0
+margin_right = 151.0
+margin_bottom = 100.0
+custom_fonts/font = ExtResource( 4 )
+text = "Tyrant's Might Background"
+align = 1
+valign = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Main/Achivments/AchInfo/TextureRect"]
+margin_left = 11.0
+margin_top = 268.0
+margin_right = 111.0
+margin_bottom = 383.0
+texture = ExtResource( 38 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="Main/Achivments/AchInfo/TextureRect/TextureRect2"]
+margin_left = 111.0
+margin_top = 50.0
+margin_right = 167.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 4 )
+text = "Tyrant's Might
+ Aura"
+align = 1
+valign = 1
+
+[node name="TextureRect3" type="TextureRect" parent="Main/Achivments/AchInfo/TextureRect"]
+margin_left = 13.0
+margin_top = 168.0
+margin_right = 92.0
+margin_bottom = 261.0
+texture = ExtResource( 36 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="Main/Achivments/AchInfo/TextureRect/TextureRect3"]
+margin_left = 85.0
+margin_top = 23.0
+margin_right = 161.0
+margin_bottom = 74.0
+custom_fonts/font = ExtResource( 4 )
+text = "Intro features a lightning strike"
+autowrap = true
+
+[node name="AchExit" type="Button" parent="Main/Achivments/AchInfo/TextureRect"]
+unique_name_in_owner = true
+margin_left = 179.0
+margin_top = 2.0
+margin_right = 198.0
+margin_bottom = 22.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.490196, 0.490196, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "X"
+script = ExtResource( 40 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label2" type="Label" parent="Main/Achivments/AchInfo/TextureRect"]
+margin_left = 8.0
+margin_top = 394.0
+margin_right = 196.0
+margin_bottom = 419.0
+custom_fonts/font = ExtResource( 4 )
+text = "(in single player, the p2 Yharim has skin and alt music equipped)"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Sounds" type="Node2D" parent="."]
+unique_name_in_owner = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MenuClick" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 24 )
+
+[node name="MenuOpen" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 23 )
+
+[node name="MenuClose" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 25 )
+
+[node name="YharimOST" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 26 )
+volume_db = -10.0
+
+[node name="OST3" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 35 )

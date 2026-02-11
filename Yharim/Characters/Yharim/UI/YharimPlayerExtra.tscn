@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://button_container_theme.tres" type="Theme" id=1]
+[ext_resource path="res://ui/ActionSelector/PlayerExtra.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Yharim/Characters/Yharim/Icons/SpeedUpIcon.png" type="Texture" id=3]
+[ext_resource path="res://Yharim/Characters/Yharim/UI/YharimPlayerExtra.gd" type="Script" id=4]
+
+[node name="YharimPlayerExtra" instance=ExtResource( 2 )]
+script = ExtResource( 4 )
+
+[node name="Reduce" type="CheckButton" parent="." index="0"]
+unique_name_in_owner = true
+margin_right = 78.0
+margin_bottom = 360.0
+hint_tooltip = "Reduce summon time for lightning using one charge."
+theme = ExtResource( 1 )
+text = "Reduce"
+icon = ExtResource( 3 )
+flat = true
